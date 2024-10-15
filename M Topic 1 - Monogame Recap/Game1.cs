@@ -12,10 +12,11 @@ namespace M_Topic_1___Monogame_Recap
         private SpriteBatch _spriteBatch;
 
         Texture2D lightningTexture, rainDropTexture, rainCloudTexture;
-        Rectangle lightningRect;
         List<Rectangle> rainDrops = new List<Rectangle>();
         List<int> x = new List<int>(), y = new List<int>();
         Random random = new Random();
+
+        float timer;
 
         public Game1()
         {
@@ -78,6 +79,8 @@ namespace M_Topic_1___Monogame_Recap
                 rainDrops[i] = new Rectangle(x[i], y[i], 50, 40);
             }
 
+            timer = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
             base.Update(gameTime);
         }
 
@@ -88,6 +91,14 @@ namespace M_Topic_1___Monogame_Recap
             _spriteBatch.Begin();
 
             _spriteBatch.Draw(rainCloudTexture, new Rectangle(0, 0, _graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight), Color.White);
+
+            if (timer > 10 || timer < 5)
+            {
+                _spriteBatch.Draw(lightningTexture, new Rectangle(random.Next(10, _graphics.PreferredBackBufferWidth), -25, 100, 600), null, Color.White, (float)(random.NextDouble() - random.NextDouble()), new Vector2(0, 0), SpriteEffects.None, 1f);
+                if (timer > 10)
+                    timer -= 10;
+            }
+
             for (int i = 0; i < rainDrops.Count; i++)
                 _spriteBatch.Draw(rainDropTexture, rainDrops[i], null, Color.White, 1f, new Vector2(0, 0), SpriteEffects.None, 1f);
 
