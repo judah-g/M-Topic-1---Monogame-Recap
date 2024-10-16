@@ -11,7 +11,7 @@ namespace M_Topic_1___Monogame_Recap
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        Texture2D lightningTexture, rainDropTexture, rainCloudTexture;
+        Texture2D lightningTexture, rainDropTexture, rainCloudTexture, jamalSheadTexture;
         List<Rectangle> rainDrops = new List<Rectangle>();
         List<int> x = new List<int>(), y = new List<int>();
         Random random = new Random();
@@ -50,6 +50,7 @@ namespace M_Topic_1___Monogame_Recap
             rainDropTexture = Content.Load<Texture2D>("raindrop");
             rainCloudTexture = Content.Load<Texture2D>("rainclouds");
             lightningTexture = Content.Load<Texture2D>("lightning_bolt");
+            jamalSheadTexture = Content.Load<Texture2D>("jamalshead");
         }
 
         protected override void Update(GameTime gameTime)
@@ -91,6 +92,7 @@ namespace M_Topic_1___Monogame_Recap
             _spriteBatch.Begin();
 
             _spriteBatch.Draw(rainCloudTexture, new Rectangle(0, 0, _graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight), Color.White);
+            _spriteBatch.Draw(jamalSheadTexture, new Rectangle(0, 50, 50, 50), Color.White);
 
             if (timer > 10 || timer < 5)
             {
